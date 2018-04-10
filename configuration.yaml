@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret home_lat
-  longitude: !secret home_lon
+  latitude: 50.466587
+  longitude: 30.602825
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
   # metric for Metric, imperial for Imperial
@@ -98,22 +98,21 @@ cloud:
 
 #logger:
 
-light:
+switch:
   - platform: rpi_gpio
     ports:
       22: Closet lights
     invert_logic: true
-
-switch:
-  - platform: rpi_rf
-    gpio: 4
-    switches:
-      rf_1:
-        code_on: 4234567
-        code_off: 4234568
-        signal_repetitions: 10
-        # pulselength: 200
-        # protocol: 5
+  #
+  # - platform: rpi_rf
+  #   gpio: 4
+  #   switches:
+  #     rf_1:
+  #       code_on: 4234567
+  #       code_off: 4234568
+  #       signal_repetitions: 10
+  #       # pulselength: 200
+  #       # protocol: 5
 
 mqtt:
   broker: m23.cloudmqtt.com
@@ -128,13 +127,13 @@ device_tracker:
 
 zone:
   - name: Home
-    latitude: !secret home_lat
-    longitude: !secret home_lon
+    latitude: 50.466587
+    longitude: 30.602825
     radius: 250
     icon: mdi:home
   - name: Work
-    latitude: !secret work_lat
-    longitude: !secret work_lon
+    latitude: 50.404911
+    longitude: 30.679961
     radius: 250
     icon: mdi:briefcase
 

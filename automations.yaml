@@ -1,6 +1,6 @@
 - action:
-  - service: light.turn_on
-    entity_id: light.closet_lights
+  - service: switch.turn_on
+    entity_id: switch.closet_lights
 
   alias: Closet lights on
   condition:
@@ -15,8 +15,8 @@
 
 
 - action:
-  - service: light.turn_off
-    entity_id: light.closet_lights
+  - service: switch.turn_off
+    entity_id: switch.closet_lights
   alias: Closet lights off
   condition:
       condition: state
@@ -54,9 +54,9 @@
       event_data:
         command: '/photo'
   action:
-      - service: light.turn_on
+      - service: switch.turn_on
         data:
-          entity_id: light.closet_lights
+          entity_id: switch.closet_lights
 
       - service: camera.snapshot
         data:
@@ -72,9 +72,9 @@
               file: '/tmp/camera_closet.jpg'
               caption: Camera
 
-      - service: light.turn_off
+      - service: switch.turn_off
         data:
-          entity_id: light.closet_lights
+          entity_id: switch.closet_lights
 
 
 

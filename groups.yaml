@@ -14,7 +14,7 @@ light:
   icon: mdi:lightbulb-outline
   view: yes
   entities:
-    - group.all_lights
+    - switch.closet_lights
 
 # end Security
 
