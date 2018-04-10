@@ -14,6 +14,13 @@ light:
   icon: mdi:lightbulb-outline
   view: yes
   entities:
+    - group.light_corridor
+
+light_corridor:
+  name: Lights in corridor
+  icon: mdi:lightbulb-outline
+  view: no
+  entities:
     - switch.closet_lights
 
 # end Security
@@ -34,7 +41,7 @@ security:
 
 climate:
   name: Climate
-  icon: mdi:wb_sunny
+  icon: mdi:cloud
   view: yes
   entities:
     - group.climate_indoor
