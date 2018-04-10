@@ -2,7 +2,7 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - device_tracker.phone
+    - device_tracker.phone_lenovo
     - sun.sun
     - group.security
     - group.climate
@@ -34,7 +34,7 @@ security:
 
 climate:
   name: Climate
-  icon: mdi:wb-sunny
+  icon: mdi:wb_sunny
   view: yes
   entities:
     - group.climate_indoor
