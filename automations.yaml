@@ -1,6 +1,6 @@
 - action:
-  - service: switch.turn_on
-    entity_id: switch.closet_lights
+  - service: light.turn_on
+    entity_id: light.closet_lights
 
   alias: Closet lights on
   condition:
@@ -15,8 +15,8 @@
 
 
 - action:
-  - service: switch.turn_off
-    entity_id: switch.closet_lights
+  - service: light.turn_off
+    entity_id: light.closet_lights
   alias: Closet lights off
   condition:
       condition: state
@@ -54,15 +54,15 @@
       event_data:
         command: '/photo'
   action:
-      - service: switch.turn_on
+      - service: light.turn_on
         data:
-          entity_id: switch.closet_lights
+          entity_id: light.closet_lights
 
       - service: camera.snapshot
         data:
           entity_id: camera.rpi_camera
           filename: '/tmp/camera_closet.jpg'
-    
+
       - service: notify.telegram_home_bot
         data:
           title: Send photo from closet camera
@@ -72,9 +72,9 @@
               file: '/tmp/camera_closet.jpg'
               caption: Camera
 
-      - service: switch.turn_off
+      - service: light.turn_off
         data:
-          entity_id: switch.closet_lights
+          entity_id: light.closet_lights
 
 
 

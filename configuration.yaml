@@ -98,12 +98,13 @@ cloud:
 
 #logger:
 
-switch:
+light:
   - platform: rpi_gpio
     ports:
       22: Closet lights
     invert_logic: true
 
+switch:
   - platform: rpi_rf
     gpio: 4
     switches:
@@ -118,7 +119,7 @@ mqtt:
   broker: m23.cloudmqtt.com
   port: 26795
   username: hass
-  password: 230393 
+  password: 230393
 
 device_tracker:
   - platform: owntracks

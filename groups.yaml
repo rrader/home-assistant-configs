@@ -1,0 +1,68 @@
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - device_tracker.phone
+    - sun.sun
+    - group.security
+    - group.climate
+
+# Security
+
+light:
+  name: Light
+  icon: mdi:lightbulb-outline
+  view: yes
+  entities:
+    - group.all_lights
+
+# end Security
+
+# Security
+
+security:
+  name: Security
+  icon: mdi:lock
+  view: yes
+  entities:
+    - camera.rpi_camera
+    - binary_sensor.motion1
+
+# end Security
+
+# Climate
+
+climate:
+  name: Climate
+  icon: mdi:wb-sunny
+  view: yes
+  entities:
+    - group.climate_indoor
+    - group.weather_today
+    - group.weather_tomorrow
+
+climate_indoor:
+  name: Climate indoor
+  view: no
+  entities:
+    - sensor.dht_sensor_temperature
+    - sensor.dht_sensor_humidity
+
+weather_today:
+  name: Weather Today
+  view: no
+  entities:
+    - sensor.weather_today_symbol
+    - sensor.weather_today_temperature
+    - sensor.weather_today_humidity
+    - sensor.weather_today_pressure
+weather_tomorrow:
+  name: Weather Tomorrow
+  view: no
+  entities:
+    - sensor.weather_tomorrow_symbol
+    - sensor.weather_tomorrow_temperature
+    - sensor.weather_tomorrow_humidity
+    - sensor.weather_tomorrow_pressure
+
+# end Climate
