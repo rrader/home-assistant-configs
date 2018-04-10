@@ -36,7 +36,7 @@ security:
     - camera.rpi_camera
     - camera.home_back_right
     - camera.home_back_left
-    - camera.home_back_front
+    - camera.home_front
     - binary_sensor.motion1
     - automation.telebot_photo
 
