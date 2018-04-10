@@ -2,8 +2,6 @@ default_view:
   view: yes
   icon: mdi:home
   entities:
-    - device_tracker.phone_lenovo
-    - sun.sun
     - group.security
     - group.climate
 
@@ -34,6 +32,7 @@ security:
   icon: mdi:lock
   view: yes
   entities:
+    - device_tracker.phone_lenovo
     - camera.rpi_camera
     - binary_sensor.motion1
     - automation.telebot_photo
@@ -47,6 +46,7 @@ climate:
   icon: mdi:cloud
   view: yes
   entities:
+    - sun.sun
     - group.climate_indoor
     - group.weather_today
     - group.weather_tomorrow
