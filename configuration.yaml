@@ -1,0 +1,167 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 50.466587
+  longitude: 30.602825
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Kiev
+  # Customization file
+  customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /tmp
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+    name: Weather tomorrow
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - pressure
+      - humidity
+      - cloudiness
+
+  - platform: yr
+    name: Weather today
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - pressure
+      - humidity
+      - cloudiness
+
+  - platform: dht
+    sensor: DHT22
+    pin: 17
+    monitored_conditions:
+        - temperature
+        - humidity
+
+binary_sensor:
+  - platform: rpi_gpio
+    ports:
+      27: Motion1
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+#logger:
+
+switch:
+  - platform: rpi_gpio
+    ports:
+      22: Closet lights
+    invert_logic: true
+
+  - platform: rpi_rf
+    gpio: 4
+    switches:
+      rf_1:
+        code_on: 4234567
+        code_off: 4234568
+        signal_repetitions: 10
+        # pulselength: 200
+        # protocol: 5
+
+mqtt:
+  broker: m23.cloudmqtt.com
+  port: 26795
+  username: hass
+  password: 230393 
+
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 200
+    mqtt_topic: "owntracks/#"
+
+zone:
+  - name: Home
+    latitude: 50.466587
+    longitude: 30.602825
+    radius: 250
+    icon: mdi:home
+  - name: Work
+    latitude: 50.404911
+    longitude: 30.679961
+    radius: 250
+    icon: mdi:briefcase
+
+ffmpeg:
+
+camera:
+  - platform: ffmpeg
+    name: RPi Camera
+    input: /dev/video0
+
+telegram_bot:
+  - platform: polling
+    api_key: 598459119:AAHNIv4x-qC0oIH3SMjHzsVmtxT3NV7KUXo
+    allowed_chat_ids:
+      - 74101698
+
+notify:
+  - name: telegram_home_bot
+    platform: telegram
+    chat_id: 74101698
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.dlink:3218

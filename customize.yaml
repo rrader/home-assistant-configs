@@ -1,0 +1,6 @@
+sensor.yr_symbol:
+  friendly_name: Weather
+sensor.yr_temperature:
+  friendly_name: Temperature
+device_tracker.fhnivsfp_lenovo:
+  hidden: true

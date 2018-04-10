@@ -1,0 +1,91 @@
+- action:
+  - service: switch.turn_on
+    entity_id: switch.closet_lights
+
+  alias: Closet lights on
+  condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  trigger:
+  - entity_id: binary_sensor.motion1
+    platform: state
+    to: 'on'
+
+
+
+- action:
+  - service: switch.turn_off
+    entity_id: switch.closet_lights
+  alias: Closet lights off
+  condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  trigger:
+  - entity_id: binary_sensor.motion1
+    platform: state
+    to: 'off'
+    for:
+      seconds: 30
+
+
+
+- alias: 'Telebot start'
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/start'
+  action:
+      - service: notify.telegram_home_bot
+        data:
+          message: Привет
+          data:
+            keyboard:
+              - '/photo'
+              - '/weather'
+
+
+- alias: 'Telebot photo'
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/photo'
+  action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.closet_lights
+
+      - service: camera.snapshot
+        data:
+          entity_id: camera.rpi_camera
+          filename: '/tmp/camera_closet.jpg'
+    
+      - service: notify.telegram_home_bot
+        data:
+          title: Send photo from closet camera
+          message: a photo
+          data:
+            document:
+              file: '/tmp/camera_closet.jpg'
+              caption: Camera
+
+      - service: switch.turn_off
+        data:
+          entity_id: switch.closet_lights
+
+
+
+- alias: 'Telebot weather'
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/weather'
+  action:
+      - service: notify.telegram_home_bot
+        data:
+          title: Погода в доме
+          message: "{{ states.sensor.dht_sensor_temperature.state }}°, {{ states.sensor.dht_sensor_humidity.state }}%"
