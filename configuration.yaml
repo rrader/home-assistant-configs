@@ -146,14 +146,14 @@ camera:
 
 telegram_bot:
   - platform: polling
-    api_key: 598459119:AAHNIv4x-qC0oIH3SMjHzsVmtxT3NV7KUXo
+    api_key: !secret telegram_api_key
     allowed_chat_ids:
-      - 74101698
+      - !secret telegram_chat_id
 
 notify:
   - name: telegram_home_bot
     platform: telegram
-    chat_id: 74101698
+    chat_id: !secret telegram_chat_id
 
 group: !include groups.yaml
 automation: !include automations.yaml
