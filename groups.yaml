@@ -50,6 +50,7 @@ climate:
     - group.climate_indoor
     - group.weather_today
     - group.weather_tomorrow
+    - automation.telebot_weather
 
 climate_indoor:
   name: Climate indoor
