@@ -145,6 +145,21 @@ camera:
   - platform: ffmpeg
     name: RPi Camera
     input: /dev/video0
+  - platform: generic
+    name: home front
+    username:  !secret camera_hv_username
+    password:  !secret camera_hv_password
+    still_image_url: !secret camera_hv_101
+  - platform: generic
+    name: home back right
+    username:  !secret camera_hv_username
+    password:  !secret camera_hv_password
+    still_image_url: !secret camera_hv_1101
+  - platform: generic
+    name: home back left
+    username:  !secret camera_hv_username
+    password:  !secret camera_hv_password
+    still_image_url: !secret camera_hv_1501
 
 telegram_bot:
   - platform: polling

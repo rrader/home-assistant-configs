@@ -34,6 +34,9 @@ security:
   entities:
     - device_tracker.phone_lenovo
     - camera.rpi_camera
+    - camera.home_back_right
+    - camera.home_back_left
+    - camera.home_back_front
     - binary_sensor.motion1
     - automation.telebot_photo
 
